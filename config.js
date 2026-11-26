@@ -3,6 +3,6 @@
 window.SITE_CONFIG = {
   contract: "",
   pump: "",
-  x: "",
+  x: "https://x.com/TurkeyInuSol",
   buy: ""
 };
