@@ -33,7 +33,7 @@ a{color:inherit}:focus-visible{outline:3px solid var(--orange);outline-offset:3p
 .links{display:flex;align-items:center;gap:1.1rem;font-weight:600;font-size:.95rem}
 .links a{text-decoration:none}.links a:not(.chip):hover{color:var(--cran)}
 .chip{background:var(--choc);color:var(--choc-ink);padding:.5rem .85rem;border-radius:999px;font-size:.85rem}
-.chip[aria-disabled="true"]{display:none}
+.chip[aria-disabled="true"]{background:transparent;color:var(--muted);border:1px solid var(--line);cursor:default}
 
 .hero{position:relative;margin:.9rem auto 0;width:min(100% - 1.6rem,1280px);aspect-ratio:4/3;border-radius:28px;background:var(--cover) center/cover no-repeat;overflow:hidden;box-shadow:var(--shadow)}
 @media (min-width:760px){.hero{aspect-ratio:2.5/1}}
@@ -132,6 +132,7 @@ footer{text-align:left;padding:3.5rem 0 3rem}
 #d-corn{--x:31%;--y:66%;--w:28%;--a:200/167;--r:5deg;--img:var(--f-corn)}
 #d-cranberry{--x:68%;--y:52%;--w:22%;--a:200/109;--r:0deg;--img:var(--f-cranberry)}
 #d-pie{--x:48%;--y:77%;--w:34%;--a:260/124;--r:0deg;--img:var(--f-pie)}
+@media (max-width:600px){.nav .brand{font-size:0}.nav{gap:.6rem}.links{gap:.7rem;font-size:.9rem}.chip{padding:.45rem .7rem;font-size:.78rem}.fu{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -143,7 +144,7 @@ footer{text-align:left;padding:3.5rem 0 3rem}
   <div class="links">
     <a href="#contract" id="navca" title="Copy contract address">CA</a><a href="#fees">Fees</a>
     <a class="chip" data-link="pump" aria-disabled="true">Pump.fun <span class="soon">Soon</span></a>
-    <a class="chip" data-link="x" aria-disabled="true">𝕏 Follow us <span class="soon">Soon</span></a>
+    <a class="chip" data-link="x" aria-disabled="true">𝕏<span class="fu"> Follow us</span> <span class="soon">Soon</span></a>
   </div>
 </nav>
 
@@ -242,6 +243,7 @@ footer{text-align:left;padding:3.5rem 0 3rem}
 <script>
 // Links and the contract address live in config.js. Values below are the fallback.
 var CONFIG=Object.assign({pump:"",x:"",buy:"",contract:""},window.SITE_CONFIG||{});
+if(!CONFIG.buy&&CONFIG.pump)CONFIG.buy=CONFIG.pump;
 document.querySelectorAll("[data-link]").forEach(function(el){var u=CONFIG[el.dataset.link];
   if(u){el.href=u;el.target="_blank";el.rel="noopener";el.removeAttribute("aria-disabled");var s=el.querySelector(".soon");if(s)s.remove();}});
 var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
