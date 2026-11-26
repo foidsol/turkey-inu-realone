@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Turkey Inu ($TURKEY) – A Thanksgiving meme with a mission</title>
+<title>Turkey Inu ($TI) – A Thanksgiving meme with a mission</title>
 <meta name="description" content="A Thanksgiving meme with a mission. 100% of project fees are dedicated to feeding Americans through Feeding America.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -141,14 +141,14 @@ footer{text-align:left;padding:3.5rem 0 3rem}
 <nav class="nav" aria-label="Main">
   <a class="brand" href="#top"><span class="mini" aria-hidden="true"></span>Turkey Inu</a>
   <div class="links">
-    <a href="#contract">CA</a><a href="#fees">Fees</a>
+    <a href="#contract" id="navca" title="Copy contract address">CA</a><a href="#fees">Fees</a>
     <a class="chip" data-link="pump" aria-disabled="true">Pump.fun <span class="soon">Soon</span></a>
     <a class="chip" data-link="x" aria-disabled="true">𝕏 Follow us <span class="soon">Soon</span></a>
   </div>
 </nav>
 
 <header class="hero" role="img" aria-label="Turkey Inu, a Shiba Inu in a plush roast-turkey hat, at a Thanksgiving feast in a glowing autumn village">
-  <div class="hc"><span class="tk">$TURKEY</span><h1>Turkey Inu</h1></div>
+  <div class="hc"><span class="tk">$TI</span><h1>Turkey Inu</h1></div>
 </header>
 
 <main>
@@ -158,7 +158,7 @@ footer{text-align:left;padding:3.5rem 0 3rem}
     <h2>A Thanksgiving meme with a mission.</h2>
     <p class="mission"><b>100% of project fees go to Feeding America</b> to help feed families in the US. A silly dog in a turkey hat with a good reason to be here.</p>
     <div class="pills">
-      <a class="pill buy" data-link="buy" aria-disabled="true">Buy $TURKEY <span class="soon">Soon</span></a>
+      <a class="pill buy" data-link="buy" aria-disabled="true">Buy $TI <span class="soon">Soon</span></a>
       <a class="pill alt" href="#fees">See where fees go</a>
     </div>
   </div>
@@ -212,7 +212,7 @@ footer{text-align:left;padding:3.5rem 0 3rem}
       </div>
     </div>
     <ol class="card flow">
-      <li><span class="n">1</span><b>People trade $TURKEY</b><span>Just like swapping pie slices.</span></li>
+      <li><span class="n">1</span><b>People trade $TI</b><span>Just like swapping pie slices.</span></li>
       <li class="arr" aria-hidden="true"></li>
       <li><span class="n">2</span><b>The project gets fees</b><span>Only the fees, not the full price of a token.</span></li>
       <li class="arr" aria-hidden="true"></li>
@@ -231,10 +231,10 @@ footer{text-align:left;padding:3.5rem 0 3rem}
 <footer>
   <div class="wrap">
     <div class="ft">
-      <div><div class="fb">TURKEY INU <span>$TURKEY</span></div><p class="tag">Big memes. Bigger hearts.</p></div>
+      <div><div class="fb">TURKEY INU <span>$TI</span></div><p class="tag">Big memes. Bigger hearts.</p></div>
       <nav class="fl" aria-label="Footer"><a href="#contract">CA</a><a href="#fees">Fees</a><a href="#top">Back to top</a><a data-link="x" aria-disabled="true">𝕏</a></nav>
     </div>
-    <p class="fine">$TURKEY is a memecoin for fun and giving. It has no promised value and you can lose all your money. This is not financial advice. Turkey Inu is independent and is not affiliated with or endorsed by Feeding America.</p>
+    <p class="fine">$TI is a memecoin for fun and giving. It has no promised value and you can lose all your money. This is not financial advice. Turkey Inu is independent and is not affiliated with or endorsed by Feeding America.</p>
   </div>
 </footer>
 
@@ -286,6 +286,16 @@ document.getElementById("copy").addEventListener("click",function(){
   function fb(){var a=document.createElement("textarea");a.value=CONFIG.contract;document.body.appendChild(a);a.select();
     try{document.execCommand("copy");say("Copied to clipboard.")}catch(e){say("Copy failed. Select the address and copy it by hand.")}a.remove()}
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(CONFIG.contract).then(function(){say("Copied to clipboard.")},fb)}else{fb()}});
+/* header CA: copy when live, otherwise jump to the CA bar */
+var nc=document.getElementById("navca"),nt;
+nc.addEventListener("click",function(e){
+  if(!CONFIG.contract)return;
+  e.preventDefault();
+  function done(){nc.textContent="Copied!";clearTimeout(nt);nt=setTimeout(function(){nc.textContent="CA"},1800)}
+  function fb(){var a=document.createElement("textarea");a.value=CONFIG.contract;document.body.appendChild(a);a.select();
+    try{document.execCommand("copy");done()}catch(x){location.hash="contract"}a.remove()}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(CONFIG.contract).then(done,fb)}else{fb()}
+});
 </script>
 </body>
 </html>
