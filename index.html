@@ -153,7 +153,7 @@ footer{text-align:left;padding:3.5rem 0 3rem}
 </header>
 
 <main>
-<p class="count" id="cd" role="timer"></p>
+<p class="count" id="cd">🎉 Happy Thanksgiving! 🦃</p>
 <section class="intro wrap">
   <div>
     <h2>A Thanksgiving meme with a mission.</h2>
@@ -268,7 +268,7 @@ function clock(){var d=new Date(),t=tg(d.getFullYear()),e=new Date(t.getFullYear
   if(d>=t&&d<e){cd.textContent="🦃 Happy Thanksgiving!";return}
   var s=Math.floor((t-d)/1000),p=function(n){return String(n).padStart(2,"0")};
   cd.textContent="🦃 Thanksgiving in "+Math.floor(s/86400)+"d "+p(Math.floor(s%86400/3600))+"h "+p(Math.floor(s%3600/60))+"m "+p(s%60)+"s"}
-clock();setInterval(clock,1000);
+
 /* ring + count-up */
 var ring=document.getElementById("ring"),pct=document.getElementById("pct");
 if(!rm)pct.textContent="0";
